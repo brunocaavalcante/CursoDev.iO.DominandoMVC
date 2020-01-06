@@ -4,7 +4,7 @@ using System.Text;
 
 namespace App.Business.Models
 {
-    class Entity
+    public class Entity
     {
         public Guid Id { get; set; }
         protected Entity()

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace App.Business.Models
 {
-    class Fornecedor
+    public class Fornecedor:Entity
     {
         public string Nome { get; set; }
         public string Documento { get; set; }

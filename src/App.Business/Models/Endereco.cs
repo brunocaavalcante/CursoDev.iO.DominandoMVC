@@ -4,7 +4,7 @@ using System.Text;
 
 namespace App.Business.Models
 {
-    class Endereco : Entity 
+    public class Endereco : Entity
     {
         public Guid FornecedorId { get; set; }
         public string Logradouro { get; set; }
