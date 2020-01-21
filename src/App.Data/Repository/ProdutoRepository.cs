@@ -1,5 +1,6 @@
 ﻿using App.Business.Interfaces;
 using App.Business.Models;
+using App.Datas.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,10 @@ namespace App.Data.Repository
 {
     public class ProdutoRepository : Repository<Produto>, IProdutoRepository
     {
+        public ProdutoRepository(MeuDbContext db) : base(db)
+        {
+        }
+
         public async Task<Produto> ObeterProdutoFornecedor(Guid id)
         {
             return await Db.Produtos.AsNoTracking()

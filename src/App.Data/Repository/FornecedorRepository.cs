@@ -17,7 +17,7 @@ namespace App.Data.Repository
         }
         public async Task<Fornecedor> ObterFornecedorEndereco(Guid id)
         {
-           return await Db.Fornecedores.AsNoTracking().Include(c=>c.Endereco).FirstOrDefaultAsync(c=>c.Id == id)
+            return await Db.Fornecedores.AsNoTracking().Include(c => c.Endereco).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Fornecedor> ObterFornecedorProdutosEndereco(Guid id)

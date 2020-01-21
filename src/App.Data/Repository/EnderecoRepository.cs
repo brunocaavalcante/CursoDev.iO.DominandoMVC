@@ -15,11 +15,10 @@ namespace App.Data.Repository
         {
 
         }
-        public async Task<IEnumerable<Endereco>> ObterEnderecoPorFornecedor(Guid fonecedorId)
+
+        public Task<IEnumerable<Endereco>> ObterEnderecoPorFornecedor(Guid fonecedorId)
         {
-            return await Db.Enderecos.AsNoTracking()
-                .FirstOrDefaultAsync(f => f.FornecedorId == fonecedorId);
-              
+            throw new NotImplementedException();
         }
     }
 }
