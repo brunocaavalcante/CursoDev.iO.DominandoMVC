@@ -38,5 +38,7 @@ namespace Presentation.ViewModels
 
         /* EF relations*/
         public FornecedorViewModel Fornecedor { get; set; }
+
+        public IEnumerable<FornecedorViewModel> Fornecedores { get; set; }
     }
 }

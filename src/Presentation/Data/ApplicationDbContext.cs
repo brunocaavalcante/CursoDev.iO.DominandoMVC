@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Presentation.ViewModels;
 
 namespace Presentation.Data
 {
@@ -12,5 +13,6 @@ namespace Presentation.Data
             : base(options)
         {
         }
+        public DbSet<Presentation.ViewModels.ProdutoViewModel> ProdutoViewModel { get; set; }
     }
 }

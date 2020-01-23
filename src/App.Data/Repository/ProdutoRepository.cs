@@ -22,12 +22,14 @@ namespace App.Data.Repository
                 .FirstOrDefaultAsync(p => p.Id == id); //Onde o id passado igual id do produto
         }
 
-        public Task<IEnumerable<Produto>> ObterProdutosFornecedores()
+        public async Task<IEnumerable<Produto>> ObterProdutosFornecedores()
         {
-            throw new NotImplementedException();
+            return await Db.Produtos.AsNoTracking()
+                  .Include(f => f.Fornecedor).ToListAsync<Produto>(); //Join tabela fornecedor
+                   //Onde o id passado igual id do produto
         }
 
-        public Task<IEnumerable<Produto>> ObterProdutosPorFornecedor(Guid fonecedorId)
+        public async Task<IEnumerable<Produto>> ObterProdutosPorFornecedor(Guid fonecedorId)
         {
             throw new NotImplementedException();
         }

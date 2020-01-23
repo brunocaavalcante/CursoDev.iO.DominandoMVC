@@ -16,5 +16,7 @@ namespace App.Business.Models
 
         /* EF relations*/
         public Fornecedor Fornecedor { get; set; }
+
+        public IEnumerable<Fornecedor> Fornecedores { get; set; }
     }
 }
