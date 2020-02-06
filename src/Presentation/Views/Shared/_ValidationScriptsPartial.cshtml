@@ -16,3 +16,14 @@
             integrity="sha256-9GycpJnliUjJDVDqP0UEu/bsm9U+3dnQUH8+3W10vkY=">
     </script>
 </environment>
+<script>
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] &&)
+    }
+
+    $.validator.methods.number = function (value, element) {
+        
+        var globalizedValue = value.replace(",", ".");
+    }
+</script>

@@ -17,6 +17,7 @@ using App.Datas.Context;
 using App.Business.Interfaces;
 using App.Data.Repository;
 using AutoMapper;
+using System.Globalization;
 
 namespace Presentation
 {
@@ -79,6 +80,16 @@ namespace Presentation
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+
+            var dafaultCulture = new CultureInfo("pt-BR");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(dafaultCulture),
+                SupportedCultures = new List<CultureInfo> { dafaultCulture },
+                SupportedUICultures = new List<CultureInfo> { dafaultCulture }
+            };
+
+            app.UseRequestLocalization(localizationOptions);
 
             app.UseMvc(routes =>
             {

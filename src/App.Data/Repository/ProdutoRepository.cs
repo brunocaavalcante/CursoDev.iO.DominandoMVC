@@ -4,6 +4,7 @@ using App.Datas.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,13 +26,13 @@ namespace App.Data.Repository
         public async Task<IEnumerable<Produto>> ObterProdutosFornecedores()
         {
             return await Db.Produtos.AsNoTracking()
-                  .Include(f => f.Fornecedor).ToListAsync<Produto>(); //Join tabela fornecedor
-                   //Onde o id passado igual id do produto
+                  .Include(f => f.Fornecedor)
+                  .OrderBy(p => p.Nome).ToListAsync();
         }
 
         public async Task<IEnumerable<Produto>> ObterProdutosPorFornecedor(Guid fonecedorId)
         {
-            throw new NotImplementedException();
+            return await Buscar(p=>p.FornecedorId == fonecedorId);
         }
     }
 }

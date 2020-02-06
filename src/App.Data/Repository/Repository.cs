@@ -41,19 +41,16 @@ namespace App.Data.Repository
             DbSet.Add(entity);
             await SaveChanges();
         }
-
         public virtual async Task Atualizar(TEntity obj)
         {
             DbSet.Update(obj);
             await SaveChanges();
         }  
-
         public virtual async Task Remover(Guid id)
         {
             DbSet.Remove(new TEntity { Id = id }); //O metodo remove pede um entity por isso estanciamos apenas uma entity passando o id pra ela
             await SaveChanges();
         }
-
         public async Task<int> SaveChanges()
         {
             return await Db.SaveChangesAsync();
