@@ -32,7 +32,7 @@
             </div>
 
             <div class="form-group">
-                <label>Imagem Atual</label>
+                <label>Imagem Atual</label><br />
                 <img src="~/Imagens/@Model.Imagem" alt="@Model.Imagem" style="width:70px;height:100px" />
             </div>
 
@@ -43,7 +43,7 @@
                     <label data-browse="Procurar" style="width:400px" class="custom-file-label" for="ImagemUpload"></label>
                     <label style="display:none" id="img_nome"></label>
                 </div>
-            </div>
+            </div><br />
 
             <div class="form-group">
                 <label asp-for="Valor" class="control-label"></label>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-dark" />
                 <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
             </div>
 
@@ -71,7 +71,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-        $('#ImageUpload').change(function () {
+        $('#ImagemUpload').change(function () {
             $('#img_nome').text(this.files[0].name);
             $('#img_nome')[0].style.display = 'block';
         })

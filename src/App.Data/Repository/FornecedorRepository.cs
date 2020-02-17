@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace App.Data.Repository
 {
-    public class FornecedorRepository: Repository<Fornecedor>,IFornecedorRepository
+    public class FornecedorRepository : Repository<Fornecedor>, IFornecedorRepository
     {
         public FornecedorRepository(MeuDbContext context) : base(context)
         {
@@ -22,7 +22,10 @@ namespace App.Data.Repository
 
         public async Task<Fornecedor> ObterFornecedorProdutosEndereco(Guid id)
         {
-            throw new NotImplementedException();
+            return await Db.Fornecedores.AsNoTracking()
+                .Include(c => c.Produtos)
+                .Include(c => c.Endereco)
+                .FirstOrDefaultAsync(c => c.Id == id);
         }
     }
 }

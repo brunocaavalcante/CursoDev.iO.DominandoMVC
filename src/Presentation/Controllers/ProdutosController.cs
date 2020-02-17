@@ -8,9 +8,6 @@ using App.Business.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Presentation.Data;
 using Presentation.ViewModels;
 
 namespace Presentation.Controllers
@@ -70,10 +67,11 @@ namespace Presentation.Controllers
             }
 
             produtoViewModel.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
+            produtoViewModel.Fornecedores = null;
 
             await _produtoRepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
 
-            return RedirectToAction("Index.cshtml");
+            return RedirectToAction("Index");
         }
 
 
