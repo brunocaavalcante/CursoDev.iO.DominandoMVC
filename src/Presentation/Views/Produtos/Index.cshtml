@@ -4,7 +4,7 @@
     ViewData["Title"] = "Lista de Produtos";
 }
 
-    <h1>@ViewData["Title"]</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
     <a class="btn btn-info" asp-action="Create">Novo Produto</a>
@@ -33,31 +33,35 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <img src="~/imagens/@item.Imagem" alt="@item.Imagem" style="width:70px;height:100px"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fornecedor.Nome)
-            </td>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/imagens/@item.Imagem" alt="@item.Imagem" style="width:70px;height:100px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fornecedor.Nome)
+                    </td>
 
-            <td>
-                @item.Valor.ToString("C");<!--Exibi o simbolo da moeda conforme a cultura da aplicação-->
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ativo)
-            </td>
+                    <td>
+                        @item.Valor.ToString("C");<!--Exibi o simbolo da moeda conforme a cultura da aplicação-->
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ativo)
+                    </td>
 
-            <td class="text-right">
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><span class="fa fa-search"></span></a> |
-                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><span class="fa fa-pencil-alt"></span></a> |
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-trash"></span></a>
-            </td>
-        </tr>
-}
+                    <td class="text-right">
+                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><span class="fa fa-search"></span></a> |
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><span class="fa fa-pencil-alt"></span></a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        }
     </tbody>
 </table>
