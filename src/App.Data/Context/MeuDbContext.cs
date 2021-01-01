@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using App.Business.Models;
 using System.Linq;
+using App.Business.Models.Financas;
 
 namespace App.Datas.Context
 {
@@ -14,6 +15,8 @@ namespace App.Datas.Context
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Fornecedor> Fornecedores { get; set; }
+        public DbSet<Conta> Contas { get; set; }
+        public DbSet<Natureza> Naturezas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

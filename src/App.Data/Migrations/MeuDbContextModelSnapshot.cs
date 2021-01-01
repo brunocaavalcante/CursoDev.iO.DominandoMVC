@@ -15,7 +15,7 @@ namespace App.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -60,6 +60,64 @@ namespace App.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Enderecos");
+                });
+
+            modelBuilder.Entity("App.Business.Models.Financas.Conta", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DataVencimento")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<Guid?>("NaturezaId");
+
+                    b.Property<Guid?>("StatusId");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(5, 2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NaturezaId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("Contas");
+                });
+
+            modelBuilder.Entity("App.Business.Models.Financas.Natureza", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Naturezas");
+                });
+
+            modelBuilder.Entity("App.Business.Models.Financas.Status", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("App.Business.Models.Fornecedor", b =>
@@ -111,7 +169,8 @@ namespace App.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
-                    b.Property<decimal>("Valor");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(5, 2)");
 
                     b.HasKey("Id");
 
@@ -125,6 +184,17 @@ namespace App.Data.Migrations
                     b.HasOne("App.Business.Models.Fornecedor", "Fornecedor")
                         .WithOne("Endereco")
                         .HasForeignKey("App.Business.Models.Endereco", "FornecedorId");
+                });
+
+            modelBuilder.Entity("App.Business.Models.Financas.Conta", b =>
+                {
+                    b.HasOne("App.Business.Models.Financas.Natureza", "Natureza")
+                        .WithMany()
+                        .HasForeignKey("NaturezaId");
+
+                    b.HasOne("App.Business.Models.Financas.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId");
                 });
 
             modelBuilder.Entity("App.Business.Models.Fornecedor", b =>

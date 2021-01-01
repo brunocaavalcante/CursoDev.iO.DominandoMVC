@@ -22,6 +22,7 @@
 
 
   <ItemGroup>
+    <Folder Include="Areas\Financas\Data\" />
     <Folder Include="wwwroot\imagens\" />
   </ItemGroup>
 

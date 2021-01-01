@@ -22,6 +22,10 @@ namespace App.Data.Mapping
                 .IsRequired()
                 .HasColumnType("varchar(100)"); //Para usar o atributo HasColumnType temos que baixa o package  Install-Package Microsoft.EntityFrameworkCore.Relational
 
+            builder.Property(p => p.Valor)
+                .IsRequired()
+                .HasColumnType("decimal(5, 2)"); 
+
             builder.ToTable("Produtos");
         }
     }
