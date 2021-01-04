@@ -13,10 +13,10 @@ namespace Presentation.Areas.Financas.Controllers
     [Area("Financas")]
     public class ContasController : Controller
     {
-        private readonly IContaRepository _contaRepository;
+        private readonly IFinancaRepository _contaRepository;
         private readonly IMapper _mapper;
 
-        public ContasController(IContaRepository contaRepository, IMapper mapper)
+        public ContasController(IFinancaRepository contaRepository, IMapper mapper)
         {
             _contaRepository = contaRepository;
             _mapper = mapper;
@@ -97,7 +97,7 @@ namespace Presentation.Areas.Financas.Controllers
             {
                 try
                 {
-                   await _contaRepository.Atualizar(conta);                    
+                    await _contaRepository.Atualizar(conta);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,15 +116,14 @@ namespace Presentation.Areas.Financas.Controllers
         }
 
         // GET: Financas/Contas/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var conta = await _context.Contas
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var conta = await _contaRepository.ObterPorId(id);
             if (conta == null)
             {
                 return NotFound();
@@ -138,15 +137,16 @@ namespace Presentation.Areas.Financas.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var conta = await _context.Contas.FindAsync(id);
-            _context.Contas.Remove(conta);
-            await _context.SaveChangesAsync();
+            var conta = await _contaRepository.ObterPorId(id);
+            if (conta != null)
+                await _contaRepository.Remover(id);
+
             return RedirectToAction(nameof(Index));
         }
 
         private bool ContaExists(Guid id)
         {
-            return  _contaRepository.ObterPorId(id) != null;
+            return _contaRepository.ObterPorId(id) != null;
         }
     }
 }

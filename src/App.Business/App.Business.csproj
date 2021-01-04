@@ -5,12 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Notificacoes\" />
-    <Folder Include="Validations\" />
-    <Folder Include="Services\" />
+    <Compile Remove="Services\**" />
+    <Compile Remove="Validations\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="Validations\**" />
+    <None Remove="Services\**" />
+    <None Remove="Validations\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Notificacoes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.0" />
   </ItemGroup>
 

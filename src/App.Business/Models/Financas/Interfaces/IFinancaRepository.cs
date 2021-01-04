@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace App.Business.Interfaces.Financas
 {
-    public interface IContaRepository:IRepository<Conta>
+    public interface IFinancaRepository:IRepository<Conta>
     {
         Task<IEnumerable<Conta>> ObterProdutosPorFornecedor(Guid fonecedorId);
         Task<IEnumerable<Conta>> ObterPorPeriodo(DateTime dataInicio, DateTime dataFim);

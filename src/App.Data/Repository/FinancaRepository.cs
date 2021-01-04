@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace App.Data.Repository
 {
-    public class ContaRepository : Repository<Conta>, IContaRepository
+    public class FinancaRepository : Repository<Conta>, IFinancaRepository
     {
-        public ContaRepository(MeuDbContext db) : base(db)
+        public FinancaRepository(MeuDbContext db) : base(db)
         {
         }
         public async Task<Conta> ObeterContas(Guid id)
